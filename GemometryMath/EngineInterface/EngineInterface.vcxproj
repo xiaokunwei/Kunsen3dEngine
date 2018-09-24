@@ -95,7 +95,10 @@
     <ClInclude Include="IRenderer.h" />
     <ClInclude Include="IRenderSequence.h" />
     <ClInclude Include="IResource.h" />
+    <ClInclude Include="IResourceManager.h" />
+    <ClInclude Include="IShader.h" />
     <ClInclude Include="ISystem.h" />
+    <ClInclude Include="ITexture.h" />
     <ClInclude Include="Platform.h" />
     <ClInclude Include="PlatformImpl.h" />
     <ClInclude Include="SharedPtr.h" />

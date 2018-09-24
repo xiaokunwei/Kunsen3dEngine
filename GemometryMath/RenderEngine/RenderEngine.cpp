@@ -13,8 +13,7 @@
 typedef IGameFrameWork* (*GET_SYSTEM)();
 typedef void(*DESTORY_END)();
 
-int WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int)
-{
+int WINAPI wWinMain(HINSTANCE, HINSTANCE, LPWSTR, int{
 	HINSTANCE hHandle = 0;
 	KsOpenModule(hHandle, _T("GameFrameWork"));
 	GET_SYSTEM pFuncStart = (GET_SYSTEM)DLL_GETSYM(hHandle, ("ModuleInitialize"));

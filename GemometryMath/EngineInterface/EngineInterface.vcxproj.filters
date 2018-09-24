@@ -31,6 +31,9 @@
     <Filter Include="Resources">
       <UniqueIdentifier>{33656be2-43e9-4a3a-8f71-39fe217e21a4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Manager">
+      <UniqueIdentifier>{1267d70f-0124-40e4-b275-5d56fbaf3721}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />
@@ -98,6 +101,15 @@
     </ClInclude>
     <ClInclude Include="I3DEngine.h">
       <Filter>Modules</Filter>
+    </ClInclude>
+    <ClInclude Include="IShader.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="ITexture.h">
+      <Filter>Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="IResourceManager.h">
+      <Filter>Manager</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -10,6 +10,11 @@ struct RenderOperation;
 
 
 #define MAX_MESHATTRIBUTE_COUNT 100
+enum EBufferType
+{
+	EBF_Discard,
+	EBF_Reserved,
+};
 
 class VertexFormat
 {
@@ -38,7 +43,7 @@ public:
 	public:
 		Useage m_usage;
 		int32 m_size;
-		Element(){ m_usage = POSITION; }
+		Element() { m_usage = POSITION; }
 		Element(Useage useage, int32 size) { m_usage = useage; m_size = size; }
 
 		bool operator==(const Element& e)const { return m_size == e.m_size&& m_usage == e.m_usage; }
@@ -54,13 +59,13 @@ public:
 			Element element;
 			memcpy(&element, &elements[i], sizeof(Element));
 			m_Elements.push_back(element);
-			m_VertexSize += element.m_size*sizeof(float);
+			m_VertexSize += element.m_size * sizeof(float);
 		}
 	}
 
 	~VertexFormat();
 
-	VertexFormat(){}
+	VertexFormat() {}
 
 	const Element& GetElement(uint32 index)const { return m_Elements[index]; }
 
@@ -68,7 +73,7 @@ public:
 
 	uint32 GetVertexSize()const { return m_VertexSize; }
 
-	bool operator==(const VertexFormat& f)const{ return true; }
+	bool operator==(const VertexFormat& f)const { return true; }
 
 	bool operator!=(const VertexFormat& f)const { return false; }
 
@@ -85,7 +90,7 @@ class VertexBuffer
 {
 public:
 
-	uint8* data;
+	uint8 * data;
 
 	bool m_NeedRebind;
 
@@ -101,11 +106,14 @@ public:
 		m_Format = foramt;
 	}
 
-	void SetData(void* data, uint32 size)
+	void SetData(void* Srcdata, uint32 size)
 	{
 		m_VertexSize = size;
-		memcpy(data, data, size);
+		memcpy(data, Srcdata, size);
 	}
+private:
+	VertexBuffer(const VertexBuffer& other);
+	VertexBuffer& operator=(const VertexBuffer& other);
 };
 
 
@@ -144,9 +152,9 @@ struct IndexBuffer
 		delete[] data;
 	}
 
-	bool NeedRebind(){ return m_needRebind; }
+	bool NeedRebind() { return m_needRebind; }
 
-	void SetBind(){
+	void SetBind() {
 		m_needRebind = false;
 	}
 
@@ -254,7 +262,7 @@ struct SubMesh
 
 struct IMeshLoader
 {
-	struct CacheEntry{
+	struct CacheEntry {
 		uint32 index;
 		CacheEntry* pNext;
 	};
@@ -284,7 +292,7 @@ struct IMeshLoader
 
 	virtual uint32 GetSubMeshCount() = 0;
 
-	virtual void GetSubSet(uint32 index, uint32& start, uint32& end, std::string name);
+	virtual void GetSubSet(uint32 index, uint32& start, uint32& end, std::string name) = 0;
 
 	virtual void FinishLoading() = 0;
 
@@ -301,9 +309,9 @@ public:
 
 	typedef std::vector<KunSen::Matrix> BoneBaseTransforms;
 
-	IMesh(IResourceManager* creator, const std::string& name){}
+	IMesh(IResourceManager* creator, const std::string& name) {}
 
-	virtual ~IMesh(){}
+	virtual ~IMesh() {}
 
 	virtual void OnReset() = 0;
 
